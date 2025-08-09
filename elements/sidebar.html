@@ -1,0 +1,150 @@
+<aside id="sidebaraside" class="w-64 h-screen bg-white shadow-lg p-4 flex flex-col justify-start fixed top-0 left-0 transition-all duration-300 ease-in-out">
+  <!-- Logo -->
+<!-- Clickable Logo (toggles sidebar) -->
+<div onclick="toggleSidebar()" class="cursor-pointer text-center mb-2">
+  <img src="assets/omislogo.png" alt="OM IS Logo" class="w-14 h-14 mx-auto" />
+  <p id="systemName" class="text-sm font-bold text-black truncate whitespace-nowrap overflow-hidden">
+    Inventory Management System
+  </p>
+</div>
+
+<hr class="my-2 border-t-2 border-black" />
+
+  <!-- Navigation Links Wrapper -->
+  <div class="flex flex-col space-y-1">
+
+    <!-- Dashboard -->
+    <button onclick="loadPageByName('dashboard-page')"
+            class="px-4 py-2 sidebar-link text-base font-medium w-full flex items-center space-x-2">
+      <img src="assets/icons/dashboard-icon.png" alt="Dashboard" class="w-5 h-5" />
+      <span>Dashboard</span>
+    </button>
+
+<hr class="my-2 border-gray-300" />
+
+    <!-- Daily Inventory -->
+    <button onclick="loadPageByName('daily-inventory')"
+            class="px-4 py-2 sidebar-link text-base font-medium w-full flex items-center space-x-2">
+      <img src="assets/icons/calendar-icon.png" alt="Calendar" class="w-5 h-5" />
+      <span>Daily Inventory</span>
+    </button>
+
+    <hr class="my-2 border-gray-300" />
+
+    <!-- Receiving -->
+    <button onclick="loadPageByName('receiving-page')"
+            class="px-4 py-2 sidebar-link text-base font-medium w-full flex items-center space-x-2">
+      <img src="assets/icons/receive-icon.png" alt="Receiving" class="w-5 h-5" />
+      <span>Receiving</span>
+    </button>
+
+    <hr class="my-2 border-gray-300" />
+
+    <!-- Collapsible Purchasing Menu -->
+    <div>
+      <button
+        onclick="toggleSubmenu('purchasing-submenu', this)"
+        class="px-4 py-2 sidebar-link text-base font-medium w-full flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <img src="assets/icons/cart-icon.png" alt="Cart" class="w-5 h-5" />
+          <span>Purchasing</span>
+        </div>
+        <svg class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2"
+             viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      <div id="purchasing-submenu"
+           class="ml-1 overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+        <div class="flex flex-col space-y-1 py-1">
+          <button onclick="loadPageByName('subpages/create-new-purchase')"
+                  class="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded sidebar-link w-full text-left">
+            <img src="assets/icons/plus-icon.png" alt="Plus" class="w-4 h-4" />
+            <span>Create New</span>
+          </button>
+
+          <button onclick="loadPageByName('subpages/history-purchase')"
+                  class="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded sidebar-link w-full text-left">
+            <img src="assets/icons/history-icon.png" alt="History" class="w-4 h-4" />
+            <span>History</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-2 border-gray-300" />
+
+  <!-- Collapsible Database Menu -->
+  <div>
+    <button
+      onclick="toggleSubmenu('database-submenu', this)"
+      class="px-4 py-2 sidebar-link text-base font-medium w-full flex items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <img src="assets/icons/database-icon.png" alt="Database" class="w-5 h-5" />
+        <span>Database</span>
+      </div>
+      <svg class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2"
+          viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+
+    <!-- 👇 FIXED ID here -->
+    <div id="database-submenu"
+        class="ml-1 overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+      <div class="flex flex-col space-y-1 py-1">
+        <button onclick="loadPageByName('subpages/suppliers-database')"
+                class="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded sidebar-link w-full text-left">
+          <img src="assets/icons/stocks-icon.png" alt="Stocks" class="w-4 h-4" />
+          <span>Stocks</span>
+        </button>
+
+        <button onclick="loadPageByName('subpages/stocks-database')"
+                class="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded sidebar-link w-full text-left">
+          <img src="assets/icons/supplier-icon.png" alt="Supplier" class="w-4 h-4" />
+          <span>Suppliers</span>
+        </button>
+      </div>
+    </div>
+  </div>
+    <!-- <div>
+      <button
+        onclick="toggleSubmenu('database-submenu', this)"
+        class="px-4 py-2 sidebar-link text-base font-medium w-full flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+          <img src="assets/icons/database-icon.png" alt="Database" class="w-5 h-5" />
+          <span>Database</span>
+        </div>
+        <svg class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2"
+             viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+            <div id="database-submenu"
+           class="ml-1 overflow-hidden max-h-0 transition-all duration-300 ease-in-out">
+        <div class="flex flex-col space-y-1 py-1">
+          <button onclick="loadPageByName('subpages/stocks-database')"
+                  class="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded sidebar-link w-full text-left">
+            <img src="assets/icons/stocks-icon.png" alt="Stocks" class="w-4 h-4" />
+            <span>Stocks</span>
+          </button>
+          <button onclick="loadPageByName('subpages/suppliers-database')"
+                  class="flex items-center space-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded sidebar-link w-full text-left">
+            <img src="assets/icons/supplier-icon.png" alt="Suppliers" class="w-4 h-4" />
+            <span>Suppliers</span>
+          </button>
+        </div>
+      </div>
+    </div> -->
+         <!-- Toggle Collapse Button -->
+      <!-- <button id="sidebarToggle"
+        onclick="toggleSidebar()"
+        class="absolute top-1/2 -right-3 transform -translate-y-1/2 bg-gray-200 hover:bg-gray-300 p-1 rounded-full shadow z-50">
+        <svg id="toggleIcon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-800" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+          <path id="toggleIconPath" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15 19l-7-7 7-7" />
+        </svg>
+      </button> -->
+  </div> <!-- end nav links -->
+</aside>

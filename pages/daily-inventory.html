@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OM IMS - Daily Inventory</title>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <style>
+    .shadow-right {
+      box-shadow: 2px 0 4px rgba(0, 0, 0, 0.05);
+    }
+    th.sortable {
+      cursor: pointer;
+    }
+    th.sortable::after {
+      content: " \21C5";
+      font-size: 0.8rem;
+      color: #4b5563;
+    }
+  </style>
+</head>
+<body class="flex min-h-screen bg-gray-100 text-gray-800">
+  <!-- Main Content -->
+  <main class="flex-1 p-8 overflow-auto">
+    <!-- Header Card Section -->
+    <section class="mb-6">
+        <h1 class="text-2xl font-semibold text-gray-800 mb-2">Daily Inventory</h1>
+    </section>
+
+    <!-- Calendar Section -->
+    <section class="mb-6">
+      <label for="inventory-date" class="block text-lg font-semibold mb-2">Select Date</label>
+      <div class="relative w-64">
+        <input
+          type="text"
+          id="inventory-date"
+          class="w-full border px-4 py-2 rounded shadow-sm pl-10 cursor-pointer bg-white"
+          placeholder="Select date"
+          readonly
+        />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 pointer-events-none"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+      </div>
+    </section>
+
+    <!-- Details Section -->
+    <section class="mb-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
+      <div>
+        <label class="block text-sm font-medium text-gray-600 mb-1">Contributors</label>
+        <div id="contributors-container" class="space-y-2">
+          <input type="text" placeholder="Input Contributor Name" class="w-full border px-4 py-2 rounded shadow-sm contributor-input" />
+        </div>
+        <button type="button" onclick="addContributor()" class="mt-2 px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700">
+          + Add Contributor
+        </button>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-600 mb-1">Status</label>
+        <select class="w-full border px-4 py-2 rounded shadow-sm">
+          <option>Backlog</option>
+          <option>In Progress</option>
+          <option>Completed</option>
+        </select>
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-gray-600 mb-1">Notes</label>
+        <textarea rows="2" class="w-full border px-4 py-2 rounded shadow-sm" placeholder="Additional notes..."></textarea>
+      </div>
+    </section>
+
+    <!-- Table Section -->
+    <section>
+      <h2 class="text-xl font-bold mb-4">Inventory Table</h2>
+      <div class="mb-4">
+        <label for="table-search" class="left-0 text-sm font-medium text-gray-600 mb-1">Search</label>
+        <input
+          type="text"
+          id="table-search"
+          class="w-full sm:w-1/3 border px-4 py-2 rounded shadow-sm"
+          placeholder="Search for item or category..."
+        />
+      </div>
+      <div class="overflow-x-auto bg-white shadow-md rounded-lg">
+        <table class="min-w-full text-sm text-left table-fixed border-collapse divide-y divide-gray-200">
+          <thead class="bg-gray-200 text-sm divide-x divide-gray-300">
+            <tr>
+              <th class="px-4 py-2 sticky left-0 bg-gray-200 z-10 shadow-right">Particular</th>
+              <th class="px-4 py-2">Category</th>
+              <th class="px-4 py-2">UOM</th>
+              <th class="px-4 py-2">Parstock</th>
+              <th class="px-4 py-2">Beginning</th>
+              <th class="px-4 py-2">Trans In</th>
+              <th class="px-4 py-2">Total</th>
+              <th class="px-4 py-2">Endorsed</th>
+              <th class="px-4 py-2">Spoilage</th>
+              <th class="px-4 py-2">Ending</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-100">
+            <!-- Example Row -->
+            <tr class="divide-x divide-gray-200 hover:bg-gray-50">
+              <td class="px-4 py-2 sticky left-0 bg-white z-0 shadow-right">Tomato</td>
+              <td class="px-4 py-2">Kitchen Fruits/Vegetables</td>
+              <td class="px-4 py-2">kg</td>
+              <td class="px-4 py-2">30</td>
+              <td class="px-4 py-2 bg-blue-50 border border-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300" contenteditable="true" data-field="beginning">3</td>
+              <td class="px-4 py-2 bg-blue-50 border border-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300" contenteditable="true" data-field="transin">7</td>
+              <td class="px-4 py-2 total">10</td>
+              <td class="px-4 py-2 bg-blue-50 border border-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300" contenteditable="true" data-field="endorsed">6</td>
+              <td class="px-4 py-2 bg-blue-50 border border-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300" contenteditable="true" data-field="spoilage">0.5</td>
+              <td class="px-4 py-2 ending">3.5</td>
+            </tr>
+
+            <!-- Add more rows as needed -->
+            <tr class="divide-x divide-gray-200 hover:bg-gray-50">
+              <td class="px-4 py-2 sticky left-0 bg-white z-0 shadow-right">Orange</td>
+              <td class="px-4 py-2">Bar Fruits/Vegetables</td>
+              <td class="px-4 py-2">pc</td>
+              <td class="px-4 py-2">225</td>
+              <td class="px-4 py-2 bg-blue-50 border border-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300" contenteditable="true" data-field="beginning">13</td>
+              <td class="px-4 py-2 bg-blue-50 border border-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300" contenteditable="true" data-field="transin">7</td>
+              <td class="px-4 py-2 total">20</td>
+              <td class="px-4 py-2 bg-blue-50 border border-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300" contenteditable="true" data-field="endorsed">6</td>
+              <td class="px-4 py-2 bg-blue-50 border border-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-300" contenteditable="true" data-field="spoilage">0</td>
+              <td class="px-4 py-2 ending">14</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      flatpickr('#inventory-date', {
+        dateFormat: 'M d, Y',
+        maxDate: 'today',
+        allowInput: false,
+        clickOpens: true,
+        defaultDate: new Date().fp_incr(-1)
+      });
+
+      const searchInput = document.getElementById('table-search');
+        if (searchInput) {
+          searchInput.addEventListener('input', () => {
+            const filter = searchInput.value.toLowerCase();
+            document.querySelectorAll('tbody tr').forEach(row => {
+              const text = row.textContent.toLowerCase();
+              row.style.display = text.includes(filter) ? '' : 'none';
+            });
+          });
+        }
+
+      window.addContributor = function () {
+        const container = document.getElementById('contributors-container');
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.placeholder = 'e.g. John, Sarah';
+        input.className = 'w-full border px-4 py-2 rounded shadow-sm contributor-input';
+        container.appendChild(input);
+      };
+
+      function calculateRow(row) {
+        const getValue = (selector) => {
+          const el = row.querySelector(selector);
+          return el ? parseFloat(el.textContent) || 0 : 0;
+        };
+
+        const beginning = getValue('[data-field="beginning"]');
+        const transIn = getValue('[data-field="transin"]');
+        const endorsed = getValue('[data-field="endorsed"]');
+        const spoilage = getValue('[data-field="spoilage"]');
+
+        const total = beginning + transIn;
+        const ending = total - endorsed - spoilage;
+
+        row.querySelector('.total').textContent = total;
+        row.querySelector('.ending').textContent = ending;
+      }
+
+      function handleRowPaste(e, row) {
+        e.preventDefault();
+        const clipboardData = e.clipboardData.getData('text/plain');
+        const values = clipboardData.trim().split(/[\t\n]/);
+        const editableCells = row.querySelectorAll('[contenteditable="true"]');
+        for (let i = 0; i < editableCells.length && i < values.length; i++) {
+          editableCells[i].textContent = values[i].trim();
+        }
+        calculateRow(row);
+      }
+
+      document.querySelectorAll('tbody tr').forEach(row => {
+        row.addEventListener('input', () => calculateRow(row));
+        row.addEventListener('paste', (e) => handleRowPaste(e, row));
+        calculateRow(row);
+      });
+
+      function sortTableByColumn(table, columnIndex, asc = true) {
+        const tbody = table.querySelector('tbody');
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+
+        rows.sort((a, b) => {
+          const getText = (row) => row.children[columnIndex]?.textContent.trim();
+          let aText = getText(a);
+          let bText = getText(b);
+
+          const aNum = parseFloat(aText);
+          const bNum = parseFloat(bText);
+          const isNumeric = !isNaN(aNum) && !isNaN(bNum);
+
+          if (isNumeric) return asc ? aNum - bNum : bNum - aNum;
+          return asc ? aText.localeCompare(bText) : bText.localeCompare(aText);
+        });
+
+        rows.forEach(row => tbody.appendChild(row));
+      }
+
+      document.querySelectorAll('th.sortable').forEach(header => {
+        let asc = true;
+        header.addEventListener('click', () => {
+          const index = parseInt(header.getAttribute('data-index'));
+          const table = header.closest('table');
+          sortTableByColumn(table, index, asc);
+          asc = !asc;
+        });
+      });
+    });
+    
+fetch('sidebar.html')
+  .then(response => response.text())
+  .then(html => {
+    // Inject sidebar HTML
+    document.getElementById('sidebar-container').innerHTML = html;
+
+    // After loading sidebar, highlight the active link
+    const currentPage = window.location.pathname.split("/").pop();
+    const container = document.getElementById('sidebar-container');
+    const links = container.querySelectorAll(".sidebar-link");
+
+    links.forEach(link => {
+      if (link.getAttribute("data-page") === currentPage) {
+        link.classList.add("bg-gray-200", "font-bold", "rounded");
+
+        // If it's a submenu item, reveal its container
+        const submenu = link.closest(".submenu");
+        if (submenu) {
+          submenu.classList.remove("hidden");
+        }
+      }
+    });
+
+    // Extra safeguard to show submenu if current page is a subpage
+    const purchasingSubpages = ["createpurchase.html", "purchaseorderhistory.html"];
+    if (purchasingSubpages.includes(currentPage)) {
+      const submenu = container.querySelector(".submenu");
+      if (submenu) submenu.classList.remove("hidden");
+    }
+  });
+      </script>
+</body>
+</html>
