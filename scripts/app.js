@@ -5,6 +5,7 @@ fetch('elements/sidebar.html')
     document.getElementById('sidebar').innerHTML = html;
   });
 
+
 // Pages still under development
 const developingPages = [
   'dashboard-page',
@@ -48,6 +49,8 @@ function loadPageByName(pageName) {
   loadPage(`pages/${pageName}.html`, isDev, pageName);
 }
 
+
+
 // Listen for clicks on elements with data-page attribute (event delegation)
 document.addEventListener('click', (event) => {
   const btn = event.target.closest('[data-page]');
@@ -56,35 +59,46 @@ document.addEventListener('click', (event) => {
   event.preventDefault();
   const page = btn.getAttribute('data-page');
   loadPageByName(page);
-});
 
-// Load default page on initial load
-window.addEventListener('DOMContentLoaded', () => {
-  loadPageByName('dashboard-page');
+  //  Add active class toggle here 
+  // Remove active styling from all sidebar buttons
+  document.querySelectorAll('.sidebar-link').forEach(b => {
+    b.classList.remove('bg-gray-200', 'text-black');
+  });
+
+  // Add active styling to the clicked button
+  btn.classList.add('bg-gray-200', 'text-black');
 });
 
 // Submenu Toggles
 function toggleSubmenu(id, btn) {
+  console.log('Toggle submenu called for:', id);
   const submenu = document.getElementById(id);
-  if (!submenu || !btn) return;
+  if (!submenu || !btn) {
+    console.warn('Missing submenu or button:', submenu, btn);
+    return;
+  }
 
   const isHidden = submenu.getAttribute('aria-hidden') === 'true';
+  console.log('Currently hidden?', isHidden);
 
   if (isHidden) {
-    // Show submenu
     submenu.style.maxHeight = submenu.scrollHeight + 'px';
     submenu.setAttribute('aria-hidden', 'false');
     btn.setAttribute('aria-expanded', 'true');
   } else {
-    // Hide submenu
     submenu.style.maxHeight = '0';
     submenu.setAttribute('aria-hidden', 'true');
     btn.setAttribute('aria-expanded', 'false');
   }
 
-  // Rotate arrow icon
   const svg = btn.querySelector('svg');
   if (svg) {
     svg.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
   }
 }
+
+// Load default page on initial load
+window.addEventListener('DOMContentLoaded', () => {
+  loadPageByName('dashboard-page');
+});
