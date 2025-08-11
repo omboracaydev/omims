@@ -1,0 +1,121 @@
+<aside id="sidebar" class="w-24 h-screen bg-white shadow-lg p-4 flex flex-col fixed top-0 left-0 transition-all duration-300 ease-in-out">
+  <!-- Logo -->
+    <img src="assets/omislogo.png" alt="OM IS Logo" class="mx-auto h-auto w-24  my-0" title="Inventory Management System" />
+
+  <hr class="my-2 border-t-2 border-black" />
+
+  <!-- Navigation Links Wrapper -->
+  <div class="flex flex-col space-y-3 flex-grow">
+    <!-- Dashboard -->
+    <button
+      onclick="loadPageByName('dashboard-page')"
+      class="sidebar-link w-full flex justify-center"
+      title="Dashboard"
+      aria-label="Dashboard"
+    >
+      <img src="assets/icons/dashboard-icon.png" alt="Dashboard Icon" class="w-6 h-6" />
+    </button>
+
+    <hr class="my-2 border-gray-300" />
+
+    <!-- Daily Inventory -->
+    <button
+      onclick="loadPageByName('daily-inventory')"
+      class="sidebar-link w-full flex justify-center"
+      title="Daily Inventory"
+      aria-label="Daily Inventory"
+    >
+      <img src="assets/icons/calendar-icon.png" alt="Calendar Icon" class="w-6 h-6" />
+    </button>
+
+    <hr class="my-2 border-gray-300" />
+
+    <!-- Receiving -->
+    <button
+      onclick="loadPageByName('receiving-page')"
+      class="sidebar-link w-full flex justify-center"
+      title="Receiving"
+      aria-label="Receiving"
+    >
+      <img src="assets/icons/receive-icon.png" alt="Receiving Icon" class="w-6 h-6" />
+    </button>
+
+    <hr class="my-2 border-gray-300" />
+
+    <!-- Purchasing Collapsible -->
+    <div>
+      <button
+        onclick="toggleSubmenu('purchasing-submenu', this)"
+        class="sidebar-link w-full flex justify-center"
+        title="Purchasing"
+        aria-label="Purchasing"
+      >
+        <img src="assets/icons/cart-icon.png" alt="Cart Icon" class="w-6 h-6" />
+      </button>
+
+      <div
+        id="purchasing-submenu"
+        class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-white shadow-lg rounded"
+      >
+        <button
+          onclick="loadPageByName('subpages/create-new-purchase')"
+          class="flex justify-center items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded w-full"
+          title="Create New Purchase Order"
+          >
+          <img src="assets/icons/plus-icon.png" alt="Plus" class="w-4 h-4" />
+        </button>
+
+        <button
+          onclick="loadPageByName('subpages/history-purchase')"
+          class="flex justify-center items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded w-full"
+          title="Purchase Order History"
+          >
+          <img src="assets/icons/history-icon.png" alt="History" class="w-4 h-4" />
+        </button>
+      </div>
+    </div>
+
+      <hr class="my-2 border-gray-300" />
+
+    <!-- Database Collapsible -->
+    <div>
+      <button
+        onclick="toggleSubmenu('database-submenu', this)"
+        class="sidebar-link w-full flex justify-center"
+        title="Database"
+        aria-label="Database"
+      >
+        <img src="assets/icons/database-icon.png" alt="Database Icon" class="w-6 h-6" />
+      </button>
+
+      <div
+        id="database-submenu"
+        class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out bg-white shadow-lg rounded"
+      >
+        <button
+          onclick="loadPageByName('subpages/suppliers-database')"
+          class="flex justify-center items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded w-full"
+          title="Stocks Database"
+          >
+          <img src="assets/icons/stocks-icon.png" alt="Stocks" class="w-4 h-4" />
+        </button>
+
+        <button
+          onclick="loadPageByName('subpages/stocks-database')"
+          class="flex justify-center items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded w-full"
+          title="Suppliers Database"
+          >
+          <img src="assets/icons/supplier-icon.png" alt="Suppliers" class="w-4 h-4" />
+        </button>
+
+        <button
+          onclick="loadPageByName('subpages/users-database')"
+          class="flex justify-center items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded w-full"
+          title="Users Database"
+          >
+          <img src="assets/icons/users-icon.png" alt="Suppliers" class="w-4 h-4" />
+        </button>
+      </div>
+    </div>
+  </div>
+</aside>

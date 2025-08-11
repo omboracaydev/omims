@@ -1,23 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>OM IS - Inventory Management</title>
-  <link href="css/tailwind.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Smooth width transition for sidebar */
+    #sidebar {
+      transition: width 0.3s ease;
+    }
+    #sidebar, #content-wrapper {
+      height: 100vh;
+    }
+  </style>
 </head>
-<body class="flex min-h-screen">
-  <!-- Sidebar -->
-  <div id="sidebar" class="w-64 fixed top-0 left-0 h-full bg-white shadow-lg"></div>
+<body class="flex">
 
-  <!-- Main Content -->
-  <main id="main-content" class="flex-1 pl-72 p-6 bg-gray-50">
-    <!-- Loaded content goes here -->
-  </main>
-  <script src="scripts/collapsible-sidebar.js" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script src="scripts/app.js" defer></script>
-  <script src="scripts/menu-selection-sidebar.js"></script>
+  <!-- Sidebar -->
+  <div id="sidebar"
+       class="fixed top-0 left-0 bg-white shadow-lg overflow-auto"
+       style="width: 16rem; height: 100vh;">
+    <!-- Sidebar content loads here -->
+  </div>
+
+  <!-- Content wrapper: right of sidebar -->
+  <div id="content-wrapper" class="flex flex-col flex-1 ml-[16rem]" style="height: 100vh;">
+    <!-- Top Bar -->
+    <header class="h-12 bg-gray-800 flex items-center px-4 text-white">
+    <button id="sidebarToggleBtn"
+      class="bg-white px-3 py-1 rounded shadow hover:bg-gray-300 transition text-black   text-xl"
+      aria-pressed="false"
+      title="Toggle Sidebar"
+    >
+      &laquo;
+    </button>
+
+      <!-- Add other topbar content here -->
+    </header>
+
+    <!-- Main content below top bar -->
+    <main id="main-content" class="flex-1 p-6 bg-gray-50 overflow-auto">
+      <h1 class="text-2xl font-bold mb-4">Main Content Area</h1>
+      <p>Content loaded here...</p>
+    </main>
+  </div>
+<script src="scripts/sidebar-collapse_expand.js"></script>
+<script src="scripts/app.js"></script>
 </body>
 </html>
