@@ -9,7 +9,7 @@ fetch('elements/sidebar.html')
 // Pages still under development
 const developingPages = [
   // 'dashboard-page',
-  'daily-inventory',
+  //'daily-inventory',
   'receiving-page',
   'subpages/stocks-database',
   'subpages/suppliers-database',
@@ -35,6 +35,11 @@ function loadPage(pageUrl, isDeveloping = false, pageName = '') {
       if (isDeveloping) {
         const pageSpan = document.getElementById('page-name');
         if (pageSpan) pageSpan.textContent = pageName;
+      }
+
+      // Call daily inventory init if loaded
+      if (pageName === 'daily-inventory' && typeof window.initDailyInventory === 'function') {
+        window.initDailyInventory();
       }
     })
     .catch(() => {
