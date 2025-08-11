@@ -8,7 +8,7 @@ fetch('elements/sidebar.html')
 
 // Pages still under development
 const developingPages = [
-  'dashboard-page',
+  // 'dashboard-page',
   'daily-inventory',
   'receiving-page',
   'subpages/stocks-database',
