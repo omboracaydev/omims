@@ -1,0 +1,81 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Receiving</title>
+</head>
+<body class="bg-white text-gray-900">
+  <div class="p-6 max-w-7xl mx-auto">
+    <!-- Title -->
+    <h1 class="text-3xl font-semibold mb-6">Receiving</h1>
+
+    <!-- Top Section -->
+    <div class="mb-6 grid gr    id-cols-1 md:grid-cols-3 gap-4 items-start">
+      <!-- Purchase Order Dropdown -->
+      <div>
+        <label for="poNumber" class="block text-sm font-medium text-gray-700 mb-1">
+          Purchase Order #
+        </label>
+        <select id="poNumber" name="poNumber" class="border rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="" disabled selected>Select Purchase Order</option>
+          <option>PO-001</option>
+          <option>PO-002</option>
+          <option>PO-003</option>
+        </select>
+      </div>
+
+      <!-- Receiver Dropdown -->
+      <div>
+        <label for="receiver" class="block text-sm font-medium text-gray-700 mb-1">
+          Receiver
+        </label>
+        <select id="receiver" name="receiver" class="border rounded-md px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <option value="" disabled selected>Select Receiver</option>
+          <option>John Doe</option>
+          <option>Jane Smith</option>
+          <option>Mark Wilson</option>
+        </select>
+      </div>
+
+      <!-- Upload Sections -->
+      <div class="space-y-4">
+        <!-- Receipt Upload -->
+        <div>
+          <label for="receiptUpload" class="block text-sm font-medium text-gray-700 mb-1">
+            Upload Receipt
+          </label>
+          <input type="file" id="receiptUpload" name="receiptUpload" accept="image/*"
+            class="border rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+
+        <!-- Stock Images Upload -->
+        <div>
+          <label for="stockImageUpload" class="block text-sm font-medium text-gray-700 mb-1">
+            Upload Stock Images
+          </label>
+          <input type="file" id="stockImageUpload" name="stockImageUpload" accept="image/*" multiple
+            class="border rounded-md px-3 py-2 w-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Received Items Table -->
+    <div class="overflow-x-auto">
+      <table id="receivingTable" class="min-w-full border border-gray-200 rounded-md">
+        <thead class="bg-gray-100 text-gray-700 text-left text-sm font-semibold">
+          <tr>
+            <th class="border border-gray-300 px-4 py-2 w-full">Particular</th>
+            <th class="border border-gray-300 px-4 py-2 w-20 text-center">UOM</th>
+            <th class="border border-gray-300 px-4 py-2 w-28 text-center">Request Quantity</th>
+            <th class="border border-gray-300 px-4 py-2 w-28 text-center">Received Quantity</th>
+            <th class="border border-gray-300 px-4 py-2 w-28 text-center">Unit Price</th>
+            <th class="border border-gray-300 px-4 py-2 w-28 text-center">Total Price</th>
+            <th class="border border-gray-300 px-4 py-2 w-50 text-center">Status</th>
+          </tr>
+        </thead>
+        <tbody id="receivingTableBody" class="text-sm text-gray-800">
+          <!-- Data Rows Here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>

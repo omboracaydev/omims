@@ -7,7 +7,7 @@
     { particular: 'Cheddar Cheese', category: 'Dairy', uom: 'kg', parStock: 30 },
   ];
 
-  function addMockRows() {
+  function addDailyRows() {
     const tbody = document.querySelector('#inventoryTable tbody');
     tbody.innerHTML = ''; // Clear existing rows if any
 
