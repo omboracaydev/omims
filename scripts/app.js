@@ -107,3 +107,4 @@ function toggleSubmenu(id, btn) {
 window.addEventListener('DOMContentLoaded', () => {
   loadPageByName('dashboard-page');
 });
+
